@@ -6,15 +6,19 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuContainer;
     public GameObject optionsMenuContainer;
+    public GameObject controlsMenuContainer;
     private bool isPaused;
     private bool inOptions;
+    private bool inControls;
 
     private void Awake()
     {
         isPaused = false;
         inOptions = false;
+        inControls = false;
         pauseMenuContainer.SetActive(false);
         optionsMenuContainer.SetActive(false);
+        controlsMenuContainer.SetActive(false);
     }
 
     void Update()
@@ -33,6 +37,11 @@ public class PauseMenu : MonoBehaviour
             if (inOptions)
             {
                 CloseOptions();
+            }
+
+            if (inControls)
+            {
+                CloseControls();
             }
 
         }
@@ -69,6 +78,27 @@ public class PauseMenu : MonoBehaviour
     public void ApplyOptions()
     {
         Debug.Log("Saving Settings");
+    }
+
+    public void OpenControls()
+    {
+        inControls = true;
+        controlsMenuContainer.SetActive(true);
+        pauseMenuContainer.SetActive(false);
+
+        GetControls();
+    }
+
+    public void CloseControls()
+    {
+        inControls = false;
+        controlsMenuContainer.SetActive(false);
+        pauseMenuContainer.SetActive(true);
+    }
+
+    private void GetControls()
+    {
+        Debug.Log("Controls found");
     }
 
 }
