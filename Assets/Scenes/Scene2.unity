@@ -6951,7 +6951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connection: {fileID: 11400000, guid: c9b78c64315a53d499e115564072ca51, type: 2}
-  targetSceneName: Scene2
+  targetSceneName: Scene1
   spawnPoint: {fileID: 828498985}
 --- !u!61 &978154787
 BoxCollider2D:
