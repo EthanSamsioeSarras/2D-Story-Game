@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneChange : MonoBehaviour
 {
-    [SerializeField] private LevelConnection connection;
+    public LevelConnection connection;
 
-    [SerializeField] private string targetSceneName;
+    public string targetSceneName;
 
-    [SerializeField] private Transform spawnPoint;
+    public Transform spawnPoint;
 
     void Start()
     {
