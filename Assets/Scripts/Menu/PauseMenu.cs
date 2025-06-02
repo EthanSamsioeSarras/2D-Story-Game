@@ -101,4 +101,9 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Controls found");
     }
 
+    public void Exit()
+    {
+        Debug.Log("Loading main menu...");
+    }
+
 }
