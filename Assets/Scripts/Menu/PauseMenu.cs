@@ -125,13 +125,13 @@ public class PauseMenu : MonoBehaviour
         Debug.Log(decision);
 
         decisionWindow.SetActive(true);
-        pauseMenuContainer.SetActive(false);
 
         string decisionText = "";
 
         switch (decision)
         {
             case "Exit":
+                pauseMenuContainer.SetActive(false);
                 decisionText = "Are you sure you want to quit?";
                 break;
             default:
