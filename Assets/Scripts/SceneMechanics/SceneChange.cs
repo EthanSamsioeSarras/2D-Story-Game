@@ -11,6 +11,8 @@ public class SceneChange : MonoBehaviour
 
     public Transform spawnPoint;
 
+    public Animator animator;
+
     void Start()
     {
 
@@ -26,9 +28,14 @@ public class SceneChange : MonoBehaviour
         var player = other.collider.GetComponent<PlayerMovementV1>();
         if (player != null)
         {
+            FadeOut();
             LevelConnection.ActiveConnection = connection;
             SceneManager.LoadScene(targetSceneName);
         }
 
+    }
+    public void FadeOut()
+    {
+        animator.SetTrigger("FadeOut");
     }
 }

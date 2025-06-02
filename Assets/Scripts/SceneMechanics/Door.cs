@@ -13,6 +13,7 @@ public class Door : SceneChange
         {
             if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Space))
             {
+                FadeOut();
                 LevelConnection.ActiveConnection = connection;
                 SceneManager.LoadScene(targetSceneName);
             }
@@ -24,7 +25,6 @@ public class Door : SceneChange
         if (other.CompareTag("Player"))
         {
             inRange = true;
-            Debug.Log("aa");
         }
 
     }
@@ -34,7 +34,6 @@ public class Door : SceneChange
         if (other.CompareTag("Player"))
         {
             inRange = false;
-            Debug.Log("bb");
         }
     }
 }
