@@ -2305,6 +2305,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8407075d79b5e1840a5257aad09baa07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connection: {fileID: 11400000, guid: c9b78c64315a53d499e115564072ca51, type: 2}
+  targetSceneName: Scene2
+  spawnPoint: {fileID: 1617508816}
 --- !u!1 &248246018
 GameObject:
   m_ObjectHideFlags: 0
