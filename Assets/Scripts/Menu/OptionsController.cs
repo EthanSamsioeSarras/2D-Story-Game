@@ -19,7 +19,7 @@ public class OptionsController : MonoBehaviour, IDataPersistence
 
     public void ApplySettings()
     {
-
+        
     }
 
     public void LoadData(GameData data)

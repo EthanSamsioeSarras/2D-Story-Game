@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class DataPersistenceManager : MonoBehaviour
 {
     private GameData gameData;
 
     public static DataPersistenceManager instance { get; private set; }
+    private List<IDataPersistence> dataPersistencesObjects;
 
     private void Awake()
     {
@@ -19,6 +21,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     private void Start()
     {
+        this.dataPersistencesObjects = FindAllDataPersistenceObjects();
         LoadGame();
     }
 
@@ -37,11 +40,24 @@ public class DataPersistenceManager : MonoBehaviour
             NewGame();
         }
         //TODO - Push the loaded data to all other scripts that need it
+        foreach(IDataPersistence dataPersistenceObj in dataPersistencesObjects)
+        {
+            dataPersistenceObj.LoadData(gameData);
+        }
+
+        Debug.Log("Loaded Master Volume = " + gameData.masterVolume);
+
     }
 
     public void SaveGame()
     {
         //TODO - Pass the data to other scripts so they can update it
+        foreach (IDataPersistence dataPersistenceObj in dataPersistencesObjects)
+        {
+            dataPersistenceObj.SaveData(ref gameData);
+        }
+
+        Debug.Log("Saved Master Volume = " + gameData.masterVolume);
 
         //TODO - Save that data to a file using the data handler
     }
@@ -49,6 +65,13 @@ public class DataPersistenceManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         SaveGame();
+    }
+
+    private List<IDataPersistence> FindAllDataPersistenceObjects()
+    {
+        IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();
+
+        return new List<IDataPersistence>(dataPersistenceObjects);
     }
 
 }
