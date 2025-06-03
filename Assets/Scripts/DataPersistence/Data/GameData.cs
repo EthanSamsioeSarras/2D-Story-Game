@@ -5,11 +5,11 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
-    public int deathCount;
+    public float masterVolume;
 
     //These are the default values
     public GameData()
     {
-        this.deathCount = 0;
+        this.masterVolume = 0;
     }
 }
