@@ -16,4 +16,20 @@ public class DataPersistenceManager : MonoBehaviour
         }
         instance = this;
     }
+    
+    public void NewGame()
+    {
+
+    }
+
+    public void LoadGame()
+    {
+
+    }
+
+    public void SaveGame()
+    {
+
+    }
+
 }
