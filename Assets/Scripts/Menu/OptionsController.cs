@@ -10,8 +10,6 @@ public class OptionsController : MonoBehaviour, IDataPersistence
 
     public AudioMixer audioMixer;
 
-    //private float masterVolume;
-
     public void LoadData(GameData data)
     {
         masterSlider.value = data.masterVolume;
@@ -24,7 +22,6 @@ public class OptionsController : MonoBehaviour, IDataPersistence
     public void SetMasterVolume(float volume)
     {
         audioMixer.SetFloat("MasterVolume", volume);
-        //masterVolume = volume;
     }
 
     public void ApplySettings()
