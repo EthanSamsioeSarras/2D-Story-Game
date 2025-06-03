@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class OptionsController : MonoBehaviour
 {
-    [SerializeField] private Slider musicSlider, sfxSlider;
+    [SerializeField] private Slider masterSlider, musicSlider, sfxSlider;
 
-    public void SetMsuicVolume(float volume)
+    public AudioMixer audioMixer;
+
+    public void SetMasterVolume(float volume)
     {
-        Debug.Log(volume);
+        audioMixer.SetFloat("MasterVolume", volume);
     }
 
     public void ApplySettings()
