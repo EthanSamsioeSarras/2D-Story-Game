@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameData : MonoBehaviour
+[System.Serializable]
+public class GameData
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int deathCount;
 
-    // Update is called once per frame
-    void Update()
+    //These are the default values
+    public GameData()
     {
-        
+        this.deathCount = 0;
     }
 }
