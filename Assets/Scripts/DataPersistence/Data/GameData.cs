@@ -6,10 +6,14 @@ using UnityEngine;
 public class GameData
 {
     public float masterVolume;
+    public float musicVolume;
+    public float sfxVolume;
 
     //These are the default values
     public GameData()
     {
         this.masterVolume = 0f;
+        this.musicVolume = 0f;
+        this.sfxVolume = 0f;
     }
 }
