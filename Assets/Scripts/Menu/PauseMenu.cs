@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
+    public OptionsController optionsController;
+
     public GameObject pauseMenuContainer;
     public GameObject optionsMenuContainer;
     public GameObject controlsMenuContainer;
@@ -80,14 +82,35 @@ public class PauseMenu : MonoBehaviour
 
     public void CloseOptions()
     {
-        inOptions = false;
-        optionsMenuContainer.SetActive(false);
-        pauseMenuContainer.SetActive(true);
+        if (optionsController.hasSaved == false)
+        {
+            OpenDecisionWindow("Options");
+        }
+        else
+        {
+            inOptions = false;
+            optionsMenuContainer.SetActive(false);
+            pauseMenuContainer.SetActive(true);
+        }
     }
 
     public void ApplyOptions()
     {
         Debug.Log("Saving Settings");
+        optionsController.ApplySettings();
+
+        decisionWindow.SetActive(false);
+        optionsMenuContainer.SetActive(false);
+        pauseMenuContainer.SetActive(true);
+    }
+    public void DiscardOptions()
+    {
+        Debug.Log("Discarding Settings");
+        optionsController.DiscardSettings();
+
+        decisionWindow.SetActive(false);
+        optionsMenuContainer.SetActive(false);
+        pauseMenuContainer.SetActive(true);
     }
 
     public void OpenControls()
@@ -134,6 +157,10 @@ public class PauseMenu : MonoBehaviour
                 pauseMenuContainer.SetActive(false);
                 decisionText = "Are you sure you want to quit?";
                 break;
+            case "Options":
+                optionsMenuContainer.SetActive(false);
+                decisionText = "Save your choices?";
+                break;
             default:
                 decisionText = "";
                 break;
@@ -141,6 +168,22 @@ public class PauseMenu : MonoBehaviour
 
         returnContainer = decision;
         decisionWindowText.text = decisionText;
+    }
+
+    public void Decision()
+    {
+        switch (returnContainer)
+        {
+            case "Exit":
+                Exit();
+                break;
+            case "Options":
+                ApplyOptions();
+                break;
+            default:
+                Debug.LogError("Error: Check OnClick(); method");
+                break;
+        }
     }
 
     public void CloseDecisionWindow()
@@ -151,8 +194,11 @@ public class PauseMenu : MonoBehaviour
                 decisionWindow.SetActive(false);
                 pauseMenuContainer.SetActive(true);
                 break;
+            case "Options":
+                DiscardOptions();
+                break;
             default:
-                Debug.Log("Error: Check OnClick(); method");
+                Debug.LogError("Error: Check OnClick(); method");
                 break;
         }
 

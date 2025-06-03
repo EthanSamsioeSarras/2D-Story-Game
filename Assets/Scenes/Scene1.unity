@@ -8262,6 +8262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4636cdd4fdb3ab34f8fb591359ae9980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  optionsController: {fileID: 1797452729}
   pauseMenuContainer: {fileID: 1565323644}
   optionsMenuContainer: {fileID: 1797452724}
   controlsMenuContainer: {fileID: 1743045872}
@@ -11218,7 +11219,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1025585245}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: Exit
+        m_MethodName: Decision
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14114,6 +14115,7 @@ MonoBehaviour:
   musicSlider: {fileID: 1547251827}
   sfxSlider: {fileID: 1971156510}
   audioMixer: {fileID: 24100000, guid: b467ebddbc88dd14d847e14c0de8f71c, type: 2}
+  hasSaved: 0
 --- !u!1 &1799920797
 GameObject:
   m_ObjectHideFlags: 0

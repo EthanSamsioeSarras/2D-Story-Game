@@ -10,13 +10,26 @@ public class OptionsController : MonoBehaviour, IDataPersistence
 
     public AudioMixer audioMixer;
 
+    private float currentMasterVolume;
+
+    public bool hasSaved = false;
+
     public void LoadData(GameData data)
     {
         masterSlider.value = data.masterVolume;
+        currentMasterVolume = data.masterVolume;
     }
     public void SaveData(GameData data)
     {
-        data.masterVolume = masterSlider.value;
+        if (hasSaved)
+        {
+            data.masterVolume = masterSlider.value;
+        }
+        else
+        {
+            masterSlider.value = data.masterVolume;
+            Debug.Log("Nope");
+        }
     }
 
     public void SetMasterVolume(float volume)
@@ -26,7 +39,12 @@ public class OptionsController : MonoBehaviour, IDataPersistence
 
     public void ApplySettings()
     {
-        Debug.Log(masterSlider.value);
+        hasSaved = true;
+    }
+
+    public void DiscardSettings()
+    {
+        masterSlider.value = currentMasterVolume;
     }
 
 }
