@@ -9,11 +9,14 @@ public class GameData
     public float musicVolume;
     public float sfxVolume;
 
+    public int qualityIndex;
+
     //These are the default values
     public GameData()
     {
         this.masterVolume = 0f;
         this.musicVolume = 0f;
         this.sfxVolume = 0f;
+        qualityIndex = 3;
     }
 }
