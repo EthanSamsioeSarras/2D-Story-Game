@@ -10,6 +10,6 @@ public class GameData
     //These are the default values
     public GameData()
     {
-        this.masterVolume = 0;
+        this.masterVolume = 0f;
     }
 }

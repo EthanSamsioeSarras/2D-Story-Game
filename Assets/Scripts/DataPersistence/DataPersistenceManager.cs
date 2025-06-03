@@ -8,7 +8,7 @@ public class DataPersistenceManager : MonoBehaviour
     private GameData gameData;
 
     public static DataPersistenceManager instance { get; private set; }
-    private List<IDataPersistence> dataPersistencesObjects;
+    private List<IDataPersistence> dataPersistenceObjects;
 
     private void Awake()
     {
@@ -21,7 +21,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     private void Start()
     {
-        this.dataPersistencesObjects = FindAllDataPersistenceObjects();
+        this.dataPersistenceObjects = FindAllDataPersistenceObjects();
         LoadGame();
     }
 
@@ -40,7 +40,7 @@ public class DataPersistenceManager : MonoBehaviour
             NewGame();
         }
         //TODO - Push the loaded data to all other scripts that need it
-        foreach(IDataPersistence dataPersistenceObj in dataPersistencesObjects)
+        foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
         {
             dataPersistenceObj.LoadData(gameData);
         }
@@ -52,9 +52,9 @@ public class DataPersistenceManager : MonoBehaviour
     public void SaveGame()
     {
         //TODO - Pass the data to other scripts so they can update it
-        foreach (IDataPersistence dataPersistenceObj in dataPersistencesObjects)
+        foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
         {
-            dataPersistenceObj.SaveData(ref gameData);
+            dataPersistenceObj.SaveData(gameData);
         }
 
         Debug.Log("Saved Master Volume = " + gameData.masterVolume);
@@ -69,7 +69,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     private List<IDataPersistence> FindAllDataPersistenceObjects()
     {
-        IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();
+        IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>(true).OfType<IDataPersistence>();
 
         return new List<IDataPersistence>(dataPersistenceObjects);
     }
