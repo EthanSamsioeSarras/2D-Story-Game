@@ -11,6 +11,7 @@ public class GameData
 
     public int qualityIndex;
     public int windowModeIndex;
+    public int resolutionIndex;
 
     //These are the default values
     public GameData()
@@ -20,5 +21,6 @@ public class GameData
         this.sfxVolume = 0f;
         this.qualityIndex = 3;
         this.windowModeIndex = 0;
+        this.resolutionIndex = 0;
     }
 }

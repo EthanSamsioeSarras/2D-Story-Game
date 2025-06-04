@@ -64,6 +64,7 @@ public class OptionsController : MonoBehaviour, IDataPersistence
         //Graphics Settings
         qualityDropdown.value = data.qualityIndex;
         windowModeIndexropdown.value = data.windowModeIndex;
+        resolutionDropdown.value = data.resolutionIndex;
     }
     public void SaveData(GameData data)
     {
@@ -75,6 +76,8 @@ public class OptionsController : MonoBehaviour, IDataPersistence
             
             data.qualityIndex = qualityDropdown.value;
             data.windowModeIndex = windowModeIndexropdown.value;
+            data.resolutionIndex = resolutionDropdown.value;
+            //Debug.Log(resolutionDropdown.value);
         }
         else
         {
@@ -84,6 +87,7 @@ public class OptionsController : MonoBehaviour, IDataPersistence
 
             qualityDropdown.value = data.qualityIndex;
             windowModeIndexropdown.value = data.windowModeIndex;
+            resolutionDropdown.value = data.resolutionIndex;
             Debug.Log("Nope");
         }
     }
@@ -122,6 +126,12 @@ public class OptionsController : MonoBehaviour, IDataPersistence
         }
     }
 
+    public void SetResolution(int resolutionIndex)
+    {
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+
     public void ApplySettings()
     {
         hasSaved = true;
@@ -137,7 +147,7 @@ public class OptionsController : MonoBehaviour, IDataPersistence
         //Graphics Settings
         qualityDropdown.value = currentQualityIndex;
         windowModeIndexropdown.value = currentWindowModeIndex;
-        
+        resolutionDropdown.value = currentResolutionIndex;
     }
 
 }
