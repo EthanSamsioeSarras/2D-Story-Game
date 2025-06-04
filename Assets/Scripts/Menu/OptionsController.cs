@@ -8,17 +8,46 @@ using UnityEngine.UI;
 public class OptionsController : MonoBehaviour, IDataPersistence
 {
     [SerializeField] private Slider masterSlider, musicSlider, sfxSlider;
-    [SerializeField] private TMP_Dropdown qualityDropdown;
+    [SerializeField] private TMP_Dropdown qualityDropdown, resolutionDropdown, windowModeIndexropdown;
 
     public AudioMixer audioMixer;
+
+    Resolution[] resolutions;
 
     private float currentMasterVolume;
     private float currentMusicVolume;
     private float currentSFXVolume;
 
     private int currentQualityIndex;
+    private int currentWindowModeIndex;
+    private int currentResolutionIndex;
 
     public bool hasSaved = false;
+
+    private void Start()
+    {
+        resolutions = Screen.resolutions;
+
+        resolutionDropdown.ClearOptions();
+
+        List<string> options = new List<string>();
+
+        int resolutionIndex = 0;
+        for(int i = 0; i < resolutions.Length; i++)
+        {
+            string option = resolutions[i].width + " x " + resolutions[i].height;
+            options.Add(option);
+
+            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+            {
+                resolutionIndex = i;
+            }
+        }
+
+        resolutionDropdown.AddOptions(options);
+        resolutionDropdown.value = resolutionIndex;
+        resolutionDropdown.RefreshShownValue();
+    }
 
     public void LoadData(GameData data)
     {
@@ -34,6 +63,7 @@ public class OptionsController : MonoBehaviour, IDataPersistence
 
         //Graphics Settings
         qualityDropdown.value = data.qualityIndex;
+        windowModeIndexropdown.value = data.windowModeIndex;
     }
     public void SaveData(GameData data)
     {
@@ -44,6 +74,7 @@ public class OptionsController : MonoBehaviour, IDataPersistence
             data.sfxVolume = sfxSlider.value;
             
             data.qualityIndex = qualityDropdown.value;
+            data.windowModeIndex = windowModeIndexropdown.value;
         }
         else
         {
@@ -52,6 +83,7 @@ public class OptionsController : MonoBehaviour, IDataPersistence
             sfxSlider .value = data.sfxVolume;
 
             qualityDropdown.value = data.qualityIndex;
+            windowModeIndexropdown.value = data.windowModeIndex;
             Debug.Log("Nope");
         }
     }
@@ -76,6 +108,20 @@ public class OptionsController : MonoBehaviour, IDataPersistence
         QualitySettings.SetQualityLevel(qualityIndex);
     }
 
+    public void SetScreen(int windowModeIndex)
+    {
+        if(windowModeIndex == 0)
+        {
+            Screen.fullScreen = true;
+            Debug.Log(windowModeIndex + " " + Screen.fullScreen);
+        }
+        if (windowModeIndex == 1)
+        {
+            Screen.fullScreen = false;
+            Debug.Log(windowModeIndex + " " + Screen.fullScreen);
+        }
+    }
+
     public void ApplySettings()
     {
         hasSaved = true;
@@ -90,6 +136,8 @@ public class OptionsController : MonoBehaviour, IDataPersistence
 
         //Graphics Settings
         qualityDropdown.value = currentQualityIndex;
+        windowModeIndexropdown.value = currentWindowModeIndex;
+        
     }
 
 }

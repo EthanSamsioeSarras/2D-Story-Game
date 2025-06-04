@@ -10,6 +10,7 @@ public class GameData
     public float sfxVolume;
 
     public int qualityIndex;
+    public int windowModeIndex;
 
     //These are the default values
     public GameData()
@@ -17,6 +18,7 @@ public class GameData
         this.masterVolume = 0f;
         this.musicVolume = 0f;
         this.sfxVolume = 0f;
-        qualityIndex = 3;
+        this.qualityIndex = 3;
+        this.windowModeIndex = 0;
     }
 }
