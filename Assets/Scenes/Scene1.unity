@@ -6612,7 +6612,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1797452729}
         m_TargetAssemblyTypeName: OptionsController, Assembly-CSharp
         m_MethodName: SetResolution
-        m_Mode: 3
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -15352,9 +15352,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 1107474719}
   - {fileID: 519420032}
-  - {fileID: 1025585249}
   - {fileID: 2101769470}
   - {fileID: 1784664968}
+  - {fileID: 1025585249}
   - {fileID: 381310319}
   - {fileID: 987480151}
   - {fileID: 1846347812}
