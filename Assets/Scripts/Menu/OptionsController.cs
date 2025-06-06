@@ -32,13 +32,13 @@ public class OptionsController : MonoBehaviour, IDataPersistence
 
         List<string> options = new List<string>();
 
-        int resolutionIndex = 0;
+        int resolutionIndex = 0;    
         for(int i = 0; i < resolutions.Length; i++)
         {
             string option = resolutions[i].width + " x " + resolutions[i].height;
             options.Add(option);
 
-            if (resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
+            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
             {
                 resolutionIndex = i;
             }
@@ -63,13 +63,8 @@ public class OptionsController : MonoBehaviour, IDataPersistence
 
         //Graphics Settings
         qualityDropdown.value = data.qualityIndex;
-        currentQualityIndex = data.qualityIndex;
-
         windowModeIndexropdown.value = data.windowModeIndex;
-        currentWindowModeIndex = data.windowModeIndex;
-
-        resolutionDropdown.value = data.resolutionIndex;
-        currentResolutionIndex = data.resolutionIndex;
+        //resolutionDropdown.value = data.resolutionIndex;
     }
     public void SaveData(GameData data)
     {
@@ -81,7 +76,7 @@ public class OptionsController : MonoBehaviour, IDataPersistence
             
             data.qualityIndex = qualityDropdown.value;
             data.windowModeIndex = windowModeIndexropdown.value;
-            data.resolutionIndex = resolutionDropdown.value;
+            //data.resolutionIndex = resolutionDropdown.value;
         }
         else
         {
@@ -91,7 +86,7 @@ public class OptionsController : MonoBehaviour, IDataPersistence
 
             qualityDropdown.value = data.qualityIndex;
             windowModeIndexropdown.value = data.windowModeIndex;
-            resolutionDropdown.value = data.resolutionIndex;
+            //resolutionDropdown.value = data.resolutionIndex;
             Debug.Log("Nope");
         }
     }
@@ -134,7 +129,6 @@ public class OptionsController : MonoBehaviour, IDataPersistence
     {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
-        resolutionDropdown.RefreshShownValue();
     }
 
     public void ApplySettings()
@@ -153,7 +147,7 @@ public class OptionsController : MonoBehaviour, IDataPersistence
         //Graphics Settings
         qualityDropdown.value = currentQualityIndex;
         windowModeIndexropdown.value = currentWindowModeIndex;
-        resolutionDropdown.value = currentResolutionIndex;
+        //resolutionDropdown.value = currentResolutionIndex;
     }
 
 }
