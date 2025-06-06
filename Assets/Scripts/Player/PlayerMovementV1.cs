@@ -34,4 +34,13 @@ public class PlayerMovementV1 : MonoBehaviour
         }
         rb.velocity = new Vector2(horizontalValue * moveSpeed * Time.deltaTime, rb.velocity.y);
     }
+
+    /*private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Item"))
+        {
+            Destroy(other.gameObject, 0.5f);
+        }
+    }*/
+
 }

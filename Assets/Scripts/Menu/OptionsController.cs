@@ -132,8 +132,8 @@ public class OptionsController : MonoBehaviour, IDataPersistence
 
     public void SetResolution(int resolutionIndex)
     {
-        Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        /*Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);*/
     }
 
     public void ApplySettings()
