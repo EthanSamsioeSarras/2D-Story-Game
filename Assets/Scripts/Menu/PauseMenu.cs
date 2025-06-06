@@ -19,6 +19,7 @@ public class PauseMenu : MonoBehaviour
     private bool isPaused;
     private bool inOptions;
     private bool inControls;
+    private bool inDecision;
 
     private string returnContainer;
 
@@ -37,13 +38,16 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isPaused)
+            if (!inDecision)
             {
-                Resume();
-            }
-            else
-            {
-                Pause();
+                if (isPaused)
+                {
+                    Resume();
+                }
+                else
+                {
+                    Pause();
+                }
             }
 
             if (inOptions)
@@ -141,11 +145,13 @@ public class PauseMenu : MonoBehaviour
         //Temporary
         decisionWindow.SetActive(false);
         pauseMenuContainer.SetActive(true);
+        Application.Quit();
     }
 
     public void OpenDecisionWindow(string decision)
     {
         Debug.Log(decision);
+        inDecision = true;
 
         decisionWindow.SetActive(true);
 
@@ -179,6 +185,7 @@ public class PauseMenu : MonoBehaviour
                 break;
             case "Options":
                 ApplyOptions();
+                inDecision = false;
                 break;
             default:
                 Debug.LogError("Error: Check OnClick(); method");
@@ -196,6 +203,7 @@ public class PauseMenu : MonoBehaviour
                 break;
             case "Options":
                 DiscardOptions();
+                inDecision = false;
                 break;
             default:
                 Debug.LogError("Error: Check OnClick(); method");
