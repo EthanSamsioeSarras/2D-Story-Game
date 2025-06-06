@@ -38,7 +38,7 @@ public class OptionsController : MonoBehaviour, IDataPersistence
             string option = resolutions[i].width + " x " + resolutions[i].height;
             options.Add(option);
 
-            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+            if (resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
             {
                 resolutionIndex = i;
             }
@@ -63,8 +63,13 @@ public class OptionsController : MonoBehaviour, IDataPersistence
 
         //Graphics Settings
         qualityDropdown.value = data.qualityIndex;
+        currentQualityIndex = data.qualityIndex;
+
         windowModeIndexropdown.value = data.windowModeIndex;
-        //resolutionDropdown.value = data.resolutionIndex;
+        currentWindowModeIndex = data.windowModeIndex;
+
+        resolutionDropdown.value = data.resolutionIndex;
+        currentResolutionIndex = data.resolutionIndex;
     }
     public void SaveData(GameData data)
     {
@@ -76,7 +81,7 @@ public class OptionsController : MonoBehaviour, IDataPersistence
             
             data.qualityIndex = qualityDropdown.value;
             data.windowModeIndex = windowModeIndexropdown.value;
-            //data.resolutionIndex = resolutionDropdown.value;
+            data.resolutionIndex = resolutionDropdown.value;
         }
         else
         {
@@ -86,7 +91,7 @@ public class OptionsController : MonoBehaviour, IDataPersistence
 
             qualityDropdown.value = data.qualityIndex;
             windowModeIndexropdown.value = data.windowModeIndex;
-            //resolutionDropdown.value = data.resolutionIndex;
+            resolutionDropdown.value = data.resolutionIndex;
             Debug.Log("Nope");
         }
     }
@@ -147,7 +152,7 @@ public class OptionsController : MonoBehaviour, IDataPersistence
         //Graphics Settings
         qualityDropdown.value = currentQualityIndex;
         windowModeIndexropdown.value = currentWindowModeIndex;
-        //resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.value = currentResolutionIndex;
     }
 
 }
