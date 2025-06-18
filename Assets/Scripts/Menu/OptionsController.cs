@@ -70,10 +70,11 @@ public class OptionsController : MonoBehaviour, IDataPersistence
 
         resolutionDropdown.value = data.resolutionIndex;
         currentResolutionIndex = data.resolutionIndex;
+        Debug.Log("YAY " + currentResolutionIndex);
     }
     public void SaveData(GameData data)
     {
-        if (hasSaved)
+        if (hasSaved == true)
         {
             data.masterVolume = masterSlider.value;
             data.musicVolume = musicSlider.value;
@@ -85,13 +86,13 @@ public class OptionsController : MonoBehaviour, IDataPersistence
         }
         else
         {
-            masterSlider.value = data.masterVolume;
+            /*masterSlider.value = data.masterVolume;
             musicSlider.value = data.musicVolume;
             sfxSlider .value = data.sfxVolume;
 
             qualityDropdown.value = data.qualityIndex;
             windowModeIndexropdown.value = data.windowModeIndex;
-            resolutionDropdown.value = data.resolutionIndex;
+            resolutionDropdown.value = data.resolutionIndex;*/
             Debug.Log("Nope");
         }
     }
@@ -130,19 +131,23 @@ public class OptionsController : MonoBehaviour, IDataPersistence
         }
     }
 
-    public void SetResolution(int resolutionIndex)
+    public void SetThisResolution(int resolutionIndex)
     {
-        Screen.SetResolution(resolutions[resolutionIndex].width, resolutions[resolutionIndex].height, Screen.fullScreen);
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        //currentResolutionIndex = resolutionIndex;
+        Debug.Log(resolutionIndex);
     }
 
     public void ApplySettings()
     {
         hasSaved = true;
-        Debug.Log(resolutionDropdown.value);
+        Debug.Log(resolutionDropdown.value + "aa");
     }
 
     public void DiscardSettings()
     {
+        hasSaved = false;
         //Audio Settings
         masterSlider.value = currentMasterVolume;
         musicSlider.value = currentMusicVolume;
@@ -152,6 +157,7 @@ public class OptionsController : MonoBehaviour, IDataPersistence
         qualityDropdown.value = currentQualityIndex;
         windowModeIndexropdown.value = currentWindowModeIndex;
         resolutionDropdown.value = currentResolutionIndex;
+        Debug.Log(currentResolutionIndex);
     }
 
 }

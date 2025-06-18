@@ -24,7 +24,7 @@ public class GameData
         this.sfxVolume = 0f;
         this.qualityIndex = 3;
         this.windowModeIndex = 0;
-        this.resolutionIndex = 0;
+        this.resolutionIndex = 17;
 
         //Item
         itemsCollected = new SerializableDictionary<string, bool>();
